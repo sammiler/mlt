@@ -21,6 +21,7 @@ target_link_libraries(mltavformat PRIVATE
   PkgConfig::libavformat
   PkgConfig::libswscale
   PkgConfig::libavutil
+  OpenGL::GL
 )
 
 if(NOT MSVC)
@@ -28,6 +29,10 @@ if(NOT MSVC)
 endif()
 
 target_compile_definitions(mltavformat PRIVATE FILTERS)
+
+if(APPLE)
+    target_link_libraries(mltavformat PRIVATE PkgConfig::epoxy "-framework CoreVideo" "-framework CoreFoundation")
+endif()
 
 if(WIN32)
   target_compile_definitions(mltavformat PRIVATE AVDATADIR="share/ffmpeg/")

@@ -219,6 +219,7 @@ if(MOD_XML OR MOD_JACKRACK)
 endif()
 
 if(MOD_AVFORMAT)
+  pkg_check_modules(epoxy IMPORTED_TARGET epoxy)
   pkg_check_modules(libavformat IMPORTED_TARGET libavformat)
   pkg_check_modules(libswscale IMPORTED_TARGET libswscale)
   pkg_check_modules(libavutil IMPORTED_TARGET libavutil)
