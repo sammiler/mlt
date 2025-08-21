@@ -25,7 +25,7 @@
 
 #include "mlt_link.h"
 #include "mlt_producer.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 /** \brief Chain class
  *

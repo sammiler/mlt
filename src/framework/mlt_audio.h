@@ -24,7 +24,7 @@
 #define MLT_AUDIO_H
 
 #include "mlt_types.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 /** \brief Audio class
  *

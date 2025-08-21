@@ -24,7 +24,7 @@
 #define MLT_FIELD_H
 
 #include "mlt_types.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 MLT_API mlt_field mlt_field_init();
 MLT_API mlt_field mlt_field_new(mlt_multitrack multitrack, mlt_tractor tractor);

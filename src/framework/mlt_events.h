@@ -24,7 +24,7 @@
 #define MLT_EVENTS_H
 
 #include "mlt_types.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 /** A container for data that may be supplied with an event */
 typedef struct

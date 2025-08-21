@@ -25,7 +25,7 @@
 
 #include "mlt_properties.h"
 #include "mlt_types.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 /** \brief Service abstract base class
  *

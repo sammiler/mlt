@@ -24,7 +24,7 @@
 #define MLT_FILTER_H
 
 #include "mlt_service.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 /** \brief Filter abstract service class
  *

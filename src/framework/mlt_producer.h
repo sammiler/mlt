@@ -26,7 +26,7 @@
 #include "mlt_filter.h"
 #include "mlt_profile.h"
 #include "mlt_service.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 /** \brief Producer abstract service class
  *

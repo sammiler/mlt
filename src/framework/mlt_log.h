@@ -22,7 +22,7 @@
 #ifndef MLT_LOG_H
 #define MLT_LOG_H
 
-#include "mlt_api.h"
+#include "mlt_export.h"
 #include <stdarg.h>
 #include <stdint.h>
 

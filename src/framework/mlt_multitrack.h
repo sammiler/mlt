@@ -24,7 +24,7 @@
 #define MLT_MULITRACK_H
 
 #include "mlt_producer.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 /** \brief Track class used by mlt_multitrack_s
  */

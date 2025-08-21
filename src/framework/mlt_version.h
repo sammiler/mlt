@@ -21,7 +21,7 @@
 
 #ifndef MLT_VERSION_H
 #define MLT_VERSION_H
-#include "mlt_api.h"
+#include "mlt_export.h"
 // Add quotes around any #define variables
 #define MLT_STRINGIZE2(s) #s
 #define MLT_STRINGIZE(s) MLT_STRINGIZE2(s)

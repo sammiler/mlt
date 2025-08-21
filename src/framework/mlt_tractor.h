@@ -24,7 +24,7 @@
 #define MLT_TRACTOR_H
 
 #include "mlt_producer.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 /** \brief Tractor class
  *
  * The tractor is a convenience class that works with the field class

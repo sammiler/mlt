@@ -70,3 +70,4 @@ CMakeLists.txt.user
 .cache/
 external
 .vscode/
+.vs

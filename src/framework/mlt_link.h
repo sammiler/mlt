@@ -24,7 +24,7 @@
 #define MLT_LINK_H
 
 #include "mlt_producer.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 /** \brief Link class
  *

@@ -34,7 +34,7 @@ extern "C" {
 #include <inttypes.h>
 #include <limits.h>
 #include <stdio.h>
-#include "mlt_api.h"
+#include "mlt_export.h"
 #ifndef PATH_MAX
 #define PATH_MAX 4096
 #endif
