@@ -189,7 +189,7 @@ function(mlt_add_glaxnimate_module ARG_TARGET)
             /bigobj
         )
         # Set C++17 standard for MSVC to fix constexpr issues
-        target_compile_features(${ARG_TARGET} PRIVATE cxx_std_17)
+        target_compile_features(${ARG_TARGET} PRIVATE cxx_std_20)
     endif()
 
     find_package(LibArchive REQUIRED)
