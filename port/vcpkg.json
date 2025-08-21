@@ -1,0 +1,177 @@
+{
+  "name": "mlt",
+  "version": "7.33.0",
+  "description": "MLT Multimedia Framework - cross-platform multimedia framework designed for television broadcasting",
+  "homepage": "https://www.mltframework.org/",
+  "documentation": "https://www.mltframework.org/docs/",
+  "license": "GPL-3.0-or-later",
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    },
+    "dlfcn-win32",
+    "libiconv", 
+    "pkgconf",
+    "gettimeofday",
+    "pthreads",
+    "rtaudio",
+    "libebur128",
+    "pango",
+    "cairo",
+    "fontconfig",
+    "libexif",
+    "fftw3"
+  ],
+  "default-features": [
+    "core",
+    "xml",
+    "vorbis", 
+    "rubberband",
+    "resample",
+    "gdk",
+    "avformat",
+    "sdl2",
+    "opencv"
+  ],
+  "features": {
+    "core": {
+      "description": "Core MLT framework"
+    },
+    "avformat": {
+      "description": "FFmpeg avformat module (MOD_AVFORMAT)",
+      "dependencies": [
+        "ffmpeg"
+      ]
+    },
+    "decklink": {
+      "description": "Blackmagic DeckLink module"
+    },
+    "frei0r": {
+      "description": "Frei0r effects module",
+      "dependencies": [
+        "frei0r-plugins"
+      ]
+    },
+    "gdk": {
+      "description": "GDK module for image and text processing (MOD_GDK)",
+      "dependencies": [
+        "gdk-pixbuf"
+      ]
+    },
+    "glaxnimate": {
+      "description": "Glaxnimate module (Qt5) - disabled by default"
+    },
+    "glaxnimate-qt6": {
+      "description": "Glaxnimate module (Qt6) - disabled by default"
+    },
+    "jackrack": {
+      "description": "JACK Rack audio processing module"
+    },
+    "kdenlive": {
+      "description": "Kdenlive effects module"
+    },
+    "ndi": {
+      "description": "NDI module - disabled by default"
+    },
+    "normalize": {
+      "description": "Audio normalization module (GPL)"
+    },
+    "oldfilm": {
+      "description": "Old film effects module"
+    },
+    "opencv": {
+      "description": "OpenCV computer vision module - disabled by default",
+      "dependencies": [
+        {
+          "name": "opencv4",
+          "features": ["contrib"]
+        }
+      ]
+    },
+    "movit": {
+      "description": "GPU-accelerated video processing - disabled by default",
+      "dependencies": [
+        "movit"
+      ]
+    },
+    "plus": {
+      "description": "Additional effects and filters"
+    },
+    "plusgpl": {
+      "description": "Additional GPL effects and filters"
+    },
+    "qt5": {
+      "description": "Qt5 module (GPL) - disabled by default",
+      "dependencies": [
+        "qt5-base",
+        "qt5-svg"
+      ]
+    },
+    "qt6": {
+      "description": "Qt6 module (GPL)",
+      "dependencies": [
+        "qtbase",
+        "qtsvg"
+      ]
+    },
+    "resample": {
+      "description": "Audio resampling module (MOD_RESAMPLE)",
+      "dependencies": [
+        "libsamplerate"
+      ]
+    },
+    "rtaudio": {
+      "description": "RtAudio module for real-time audio I/O"
+    },
+    "rubberband": {
+      "description": "Rubberband time-stretching module (MOD_RUBBERBAND)",
+      "dependencies": [
+        "rubberband"
+      ]
+    },
+    "sdl1": {
+      "description": "SDL1 module - disabled by default"
+    },
+    "sdl2": {
+      "description": "SDL2 audio/video output module (MOD_SDL2)",
+      "dependencies": [
+        "sdl2"
+      ]
+    },
+    "sox": {
+      "description": "SoX audio processing module - disabled by default",
+      "dependencies": [
+        "sox"
+      ]
+    },
+    "spatialaudio": {
+      "description": "Spatial audio module - disabled by default"
+    },
+    "vidstab": {
+      "description": "Video stabilization module (GPL)",
+      "dependencies": [
+        "libvidstab"
+      ]
+    },
+    "vorbis": {
+      "description": "Ogg Vorbis audio module (MOD_VORBIS)",
+      "dependencies": [
+        "libvorbis"
+      ]
+    },
+    "xine": {
+      "description": "XINE module (GPL)"
+    },
+    "xml": {
+      "description": "XML module (MOD_XML)",
+      "dependencies": [
+        "libxml2"
+      ]
+    }
+  }
+}
