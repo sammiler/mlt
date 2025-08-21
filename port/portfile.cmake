@@ -14,6 +14,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO sammiler/mlt
     REF msvc-master
+    SHA512 c3023ca9b88bda686f5fb0821ade82d527c65e24bd5233d4850a45de81d7a7099f2e6203654d791ea16324e80c58c76b83d76c2dd8473a50893f48ab12f01431
     HEAD_REF msvc-master
 )
 
@@ -80,6 +81,38 @@ if(EXISTS "${RIFF_HEADER}")
     file(READ "${RIFF_HEADER}" RiffContent)
     string(REPLACE "constexpr RangeIterator(" "RangeIterator(" RiffContent "${RiffContent}")
     file(WRITE "${RIFF_HEADER}" "${RiffContent}")
+endif()
+
+# Apply compatibility patch to glaxnimate cos.hpp for MSVC C++20
+# Fix CosToken constructor issues with initializer list syntax
+set(COS_HEADER "${SOURCE_PATH}/src/modules/glaxnimate/glaxnimate/src/core/io/aep/cos.hpp")
+message(STATUS "SourcePATH: ${SOURCE_PATH}")
+if(EXISTS "${COS_HEADER}")
+    message(STATUS "SourcePATH: ${SOURCE_PATH}")
+    message(STATUS "Patching ${COS_HEADER}")
+    file(READ "${COS_HEADER}" CosContent)
+    
+    # Add missing constructors for CosToken struct
+    string(REPLACE 
+        "    CosToken() = default;\n    CosToken(CosToken&&) = default;\n    CosToken& operator=(CosToken&&) = default;"
+        "    CosToken() = default;\n    CosToken(CosToken&&) = default;\n    CosToken& operator=(CosToken&&) = default;\n    // Additional constructors for MSVC compatibility\n    explicit CosToken(CosTokenType t) : type(t) {}\n    CosToken(CosTokenType t, CosValue v) : type(t), value(std::move(v)) {}"
+        CosContent "${CosContent}")
+    
+    # Fix the return statements with initializer lists - use correct enum values
+    string(REPLACE "return {CosTokenType::ObjectStart};" "return CosToken(CosTokenType::ObjectStart);" CosContent "${CosContent}")
+    string(REPLACE "return {CosTokenType::ObjectEnd};" "return CosToken(CosTokenType::ObjectEnd);" CosContent "${CosContent}")
+    string(REPLACE "return {CosTokenType::ArrayStart};" "return CosToken(CosTokenType::ArrayStart);" CosContent "${CosContent}")
+    string(REPLACE "return {CosTokenType::ArrayEnd};" "return CosToken(CosTokenType::ArrayEnd);" CosContent "${CosContent}")
+    string(REPLACE "return {CosTokenType::Number, head.toDouble()};" "return CosToken(CosTokenType::Number, head.toDouble());" CosContent "${CosContent}")
+    string(REPLACE "return {CosTokenType::Number, num.toDouble()};" "return CosToken(CosTokenType::Number, num.toDouble());" CosContent "${CosContent}")
+    string(REPLACE "return {CosTokenType::Boolean, true};" "return CosToken(CosTokenType::Boolean, true);" CosContent "${CosContent}")
+    string(REPLACE "return {CosTokenType::Boolean, false};" "return CosToken(CosTokenType::Boolean, false);" CosContent "${CosContent}")
+    string(REPLACE "return {CosTokenType::Null};" "return CosToken(CosTokenType::Null);" CosContent "${CosContent}")
+    string(REPLACE "return {CosTokenType::String, decode_string(string)};" "return CosToken(CosTokenType::String, decode_string(string));" CosContent "${CosContent}")
+    string(REPLACE "return {CosTokenType::HexString, QByteArray::fromHex(data)};" "return CosToken(CosTokenType::HexString, QByteArray::fromHex(data));" CosContent "${CosContent}")
+    string(REPLACE "return {CosTokenType::Identifier, ident};" "return CosToken(CosTokenType::Identifier, ident);" CosContent "${CosContent}")
+    
+    file(WRITE "${COS_HEADER}" "${CosContent}")
 endif()
 
 # Configure features

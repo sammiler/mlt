@@ -1,12 +1,30 @@
-# MLT vcpkg Port
+# MLT vcpkg Port - MSVC Compatibility Fix
 
-This is a vcpkg port for MLT (Multimedia Framework) version 7.33.0 that supports MSVC compilation only.
+This is a vcpkg port for MLT (Multimedia Framework) version 7.33.0 that supports MSVC compilation with fixes for glaxnimate module compatibility.
+
+## Fixed Issues
+
+### CosToken Constructor Issue
+
+The main issue was in the `glaxnimate/src/core/io/aep/cos.hpp` file where the `CosToken` class was using C++11 brace initialization syntax that wasn't compatible with MSVC's strict interpretation of constructor requirements.
+
+**Problem**: The code was using `return {TokenType};` and `return {TokenType, value};` syntax, but the `CosToken` class only had default, copy, and move constructors.
+
+**Solution**: Added explicit constructors to handle different parameter combinations:
+- `explicit CosToken(CosTokenType type)` - for single token type
+- `CosToken(CosTokenType type, double value)` - for numeric tokens
+- `CosToken(CosTokenType type, bool value)` - for boolean tokens  
+- `CosToken(CosTokenType type, const QString& value)` - for string tokens
+- `CosToken(CosTokenType type, const QByteArray& value)` - for byte array tokens
+
+All `return {...};` statements were replaced with explicit `return CosToken(...);` calls.
 
 ## Requirements
 
 - **Windows only**: This port is specifically designed for MSVC on Windows
 - **Git**: Required for submodule initialization
 - **vcpkg**: Latest version recommended
+- **C++20**: Standard requirement
 
 ## Installation
 
@@ -155,3 +173,8 @@ vcpkg install mlt:x64-windows --editable
 ```
 
 If there are issues, check the build logs and update the SHA512 hash in `portfile.cmake` after the first run.
+
+
+## Full Features
+
+vcpkg install mlt[core,avformat,decklink,frei0r,gdk,jackrack,kdenlive,normalize,oldfilm,plus,plusgpl,qt6,resample,rtaudio,rubberband,sdl2,vidstab,vorbis,xine,xml,opencv,glaxnimate-qt6]
