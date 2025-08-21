@@ -79,11 +79,3 @@ jobs:
 6.  The `if(DEFINED ENV{VCPKG_MLT_SOURCE_DIR})` condition in `portfile.cmake` evaluates to **true**.
 7.  It **completely skips** the `vcpkg_from_github` block, avoiding the `SHA512` problem entirely.
 8.  It directly uses the source code at `${{ github.workspace }}` (the PR's own code) for the build.
-
-**This solution perfectly achieves:**
-
-*   **The CI can test the code from the PR itself**, including any modifications to the `portfile.cmake`.
-*   **The self-bootstrapping problem in CI is completely avoided.**
-*   **End-users** who install this port on their own machines (who won't have the environment variable set) will follow the `else` path, downloading a stable, hash-verified official version, which ensures security and reproducibility.
-
-This is a professional and robust CI practice that perfectly resolves the "chicken-and-egg" paradox you identified.
