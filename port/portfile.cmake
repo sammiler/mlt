@@ -14,7 +14,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO sammiler/mlt
     REF msvc-master
-    SHA512 4d3fb99ce964e4719a3dcc54a135fc3a5b7f20030c156eb451d28ba40482e2748ffac6970c9a9130b06058749061e02f8d6b596866cc91f61dab3c09ced9fe35
+    SHA512 f4bb3181ac8aad7b62432a7454d083717cc2f044c1b91b6a9c9819dae574368fa5616e49a5b0a093da5924ba21c055c2b17da7efe6cf8facd36577abf7af14b4
     HEAD_REF msvc-master
 )
 
@@ -55,6 +55,25 @@ vcpkg_extract_source_archive_ex(
 file(COPY "${VIDSTAB_SOURCE_PATH}/" DESTINATION "${SOURCE_PATH}/external/vid.stab")
 file(COPY "${FREI0R_SOURCE_PATH}/" DESTINATION "${SOURCE_PATH}/external/frei0r")
 file(COPY "${GLAXNIMATE_SOURCE_PATH}/glaxnimate-master/" DESTINATION "${SOURCE_PATH}/src/modules/glaxnimate/glaxnimate")
+
+# Patch external/frei0r to use ${CMAKE_SOURCE_DIR}/external/frei0r paths
+set(FREI0R_CMAKE "${SOURCE_PATH}/external/frei0r/CMakeLists.txt")
+if(EXISTS "${FREI0R_CMAKE}")
+    file(READ "${FREI0R_CMAKE}" FREI0R_CMAKE_CONTENT)
+    # install include dir
+    string(REPLACE "\${CMAKE_SOURCE_DIR}/" "\${CMAKE_SOURCE_DIR}/external/frei0r/" FREI0R_CMAKE_CONTENT "${FREI0R_CMAKE_CONTENT}")
+    file(WRITE "${FREI0R_CMAKE}" "${FREI0R_CMAKE_CONTENT}")
+endif()
+
+# Apply a small compatibility patch to glaxnimate riff.hpp for MSVC C++17
+# MSVC reports C3615 when a constexpr ctor uses std::vector iterators (non-constexpr in C++17).
+# We replace `constexpr RangeIterator(` with `RangeIterator(` to compile under vcpkg's toolchain.
+set(RIFF_HEADER "${SOURCE_PATH}/src/modules/glaxnimate/glaxnimate/src/core/io/aep/riff.hpp")
+if(EXISTS "${RIFF_HEADER}")
+    file(READ "${RIFF_HEADER}" RiffContent)
+    string(REPLACE "constexpr RangeIterator(" "RangeIterator(" RiffContent "${RiffContent}")
+    file(WRITE "${RIFF_HEADER}" "${RiffContent}")
+endif()
 
 # Configure features
 set(FEATURE_OPTIONS "")
@@ -228,9 +247,16 @@ else()
     list(APPEND FEATURE_OPTIONS "-DMOD_XML=OFF")
 endif()
 
+# Set vcpkg specific compiler flags for MSVC
+if(VCPKG_TARGET_IS_WINDOWS AND NOT VCPKG_TARGET_TRIPLET MATCHES "mingw")
+    set(VCPKG_CXX_FLAGS "/permissive /std:c++20")
+    set(VCPKG_C_FLAGS "")
+endif()
+
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
     OPTIONS
+    -DCMAKE_CXX_STANDARD=20
         # Core build options
         -DGPL=ON
         -DGPL3=ON

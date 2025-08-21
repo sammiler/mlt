@@ -22,7 +22,9 @@
         "MOD_GLAXNIMATE_QT6": "ON",
         "MOD_OPENCV": "ON",
         "MOD_MOVIT": "OFF",
-        "MOD_SOX": "OFF"
+        "MOD_SOX": "OFF",
+        "MOD_FREI0R": "OFF",
+        "MOD_VIDSTAB": "OFF"
       }
     },
     {

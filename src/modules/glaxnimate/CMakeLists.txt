@@ -1,4 +1,4 @@
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTOUIC ON)
@@ -179,7 +179,6 @@ function(mlt_add_glaxnimate_module ARG_TARGET)
         target_compile_definitions(${ARG_TARGET} PRIVATE 
             _HAS_EXCEPTIONS=1
             _ENABLE_EXTENDED_ALIGNED_STORAGE
-            _SILENCE_CXX17_ITERATOR_BASE_CLASS_DEPRECATION_WARNING
         )
         target_compile_options(${ARG_TARGET} PRIVATE 
             /EHsc 
@@ -187,7 +186,6 @@ function(mlt_add_glaxnimate_module ARG_TARGET)
             /Zc:__cplusplus
             /utf-8
             /bigobj
-            /Zc:preprocessor-
         )
     endif()
 
