@@ -176,8 +176,20 @@ function(mlt_add_glaxnimate_module ARG_TARGET)
     
     # Fix for MSVC missing std::runtime_error include
     if(MSVC)
-        target_compile_definitions(${ARG_TARGET} PRIVATE _HAS_EXCEPTIONS=1)
-        target_compile_options(${ARG_TARGET} PRIVATE /EHsc /FIstdexcept)
+        target_compile_definitions(${ARG_TARGET} PRIVATE 
+            _HAS_EXCEPTIONS=1
+            _ENABLE_EXTENDED_ALIGNED_STORAGE
+        )
+        target_compile_options(${ARG_TARGET} PRIVATE 
+            /EHsc 
+            /FIstdexcept
+            /Zc:__cplusplus
+            /permissive-
+            /utf-8
+            /bigobj
+        )
+        # Set C++17 standard for MSVC to fix constexpr issues
+        target_compile_features(${ARG_TARGET} PRIVATE cxx_std_17)
     endif()
 
     find_package(LibArchive REQUIRED)

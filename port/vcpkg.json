@@ -28,7 +28,6 @@
     "fftw3"
   ],
   "default-features": [
-    "core",
     "xml",
     "vorbis", 
     "rubberband",
@@ -39,9 +38,6 @@
     "opencv"
   ],
   "features": {
-    "core": {
-      "description": "Core MLT framework"
-    },
     "avformat": {
       "description": "FFmpeg avformat module (MOD_AVFORMAT)",
       "dependencies": [
@@ -52,10 +48,7 @@
       "description": "Blackmagic DeckLink module"
     },
     "frei0r": {
-      "description": "Frei0r effects module",
-      "dependencies": [
-        "frei0r-plugins"
-      ]
+      "description": "Frei0r effects module"
     },
     "gdk": {
       "description": "GDK module for image and text processing (MOD_GDK)",
@@ -116,7 +109,8 @@
       "description": "Qt6 module (GPL)",
       "dependencies": [
         "qtbase",
-        "qtsvg"
+        "qtsvg",
+        "qt5compat"
       ]
     },
     "resample": {
@@ -153,10 +147,7 @@
       "description": "Spatial audio module - disabled by default"
     },
     "vidstab": {
-      "description": "Video stabilization module (GPL)",
-      "dependencies": [
-        "libvidstab"
-      ]
+      "description": "Video stabilization module (GPL)"
     },
     "vorbis": {
       "description": "Ogg Vorbis audio module (MOD_VORBIS)",
