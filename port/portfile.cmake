@@ -60,8 +60,16 @@ set(FREI0R_CMAKE "${SOURCE_PATH}/external/frei0r/CMakeLists.txt")
 if(EXISTS "${FREI0R_CMAKE}")
     file(READ "${FREI0R_CMAKE}" FREI0R_CMAKE_CONTENT)
     # install include dir
-    string(REPLACE "\${CMAKE_SOURCE_DIR}/" "\${CMAKE_SOURCE_DIR}/external/frei0r/" FREI0R_CMAKE_CONTENT "${FREI0R_CMAKE_CONTENT}")
+    string(REPLACE "\${CMAKE_SOURCE_DIR}/" "\${CMAKE_CURRENT_SOURCE_DIR}/" FREI0R_CMAKE_CONTENT "${FREI0R_CMAKE_CONTENT}")
     file(WRITE "${FREI0R_CMAKE}" "${FREI0R_CMAKE_CONTENT}")
+endif()
+
+set(VIDSTAB_CMAKE "${SOURCE_PATH}/external/vid.stab/CMakeLists.txt")
+if(EXISTS "${VIDSTAB_CMAKE}")
+    file(READ "${VIDSTAB_CMAKE}" VIDSTAB_CMAKE_CONTENT)
+    # install include dir
+    string(REPLACE "\${CMAKE_SOURCE_DIR}/" "\${CMAKE_CURRENT_SOURCE_DIR}/" VIDSTAB_CMAKE_CONTENT "${VIDSTAB_CMAKE_CONTENT}")
+    file(WRITE "${VIDSTAB_CMAKE}" "${VIDSTAB_CMAKE_CONTENT}")
 endif()
 
 # Apply a small compatibility patch to glaxnimate riff.hpp for MSVC C++17

@@ -57,7 +57,11 @@
       ]
     },
     "glaxnimate": {
-      "description": "Glaxnimate module (Qt5) - disabled by default"
+      "description": "Glaxnimate module (Qt5) - disabled by default",
+      "dependencies": [
+        "qt5-base",
+        "qt5-svg"
+      ]
     },
     "glaxnimate-qt6": {
       "description": "Glaxnimate module (Qt6) - disabled by default"
