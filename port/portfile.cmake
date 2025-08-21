@@ -14,7 +14,6 @@ vcpkg_from_github(
     OUT_SOURCE_PATH SOURCE_PATH
     REPO sammiler/mlt
     REF msvc-master
-    SHA512 f4bb3181ac8aad7b62432a7454d083717cc2f044c1b91b6a9c9819dae574368fa5616e49a5b0a093da5924ba21c055c2b17da7efe6cf8facd36577abf7af14b4
     HEAD_REF msvc-master
 )
 
