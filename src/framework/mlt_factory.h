@@ -25,7 +25,7 @@
 #include "mlt_profile.h"
 #include "mlt_repository.h"
 #include "mlt_types.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 /**
  * \envvar \em MLT_PRODUCER the name of a default producer often used by other services, defaults to "loader"

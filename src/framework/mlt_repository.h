@@ -25,7 +25,7 @@
 
 #include "mlt_profile.h"
 #include "mlt_types.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 /** This callback is the main entry point into a module, which must be exported
  *  with the symbol "mlt_register".
  *

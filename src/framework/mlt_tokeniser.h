@@ -22,7 +22,7 @@
 
 #ifndef MLT_TOKENISER_H
 #define MLT_TOKENISER_H
-#include "mlt_api.h"
+#include "mlt_export.h"
 /** \brief Tokeniser class
  *
  */

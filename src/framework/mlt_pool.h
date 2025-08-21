@@ -23,7 +23,7 @@
 #ifndef MLT_POOL_H
 #define MLT_POOL_H
 
-#include "mlt_api.h"
+#include "mlt_export.h"
 MLT_API void mlt_pool_init();
 MLT_API void *mlt_pool_alloc(int size);
 MLT_API void *mlt_pool_realloc(void *ptr, int size);

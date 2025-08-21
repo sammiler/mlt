@@ -24,7 +24,7 @@
 
 #include <stdint.h>
 #include <stdio.h>
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 #ifdef __cplusplus
 extern "C" {

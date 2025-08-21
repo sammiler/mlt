@@ -1,7 +1,6 @@
 set(MLT_PUBLIC_HEADERS
   mlt.h
   mlt_animation.h
-  mlt_api.h
   mlt_audio.h
   mlt_cache.h
   mlt_chain.h
@@ -78,6 +77,17 @@ add_custom_target("Other_mlt_Files" SOURCES
 
 add_library(Mlt${MLT_VERSION_MAJOR}::mlt ALIAS mlt)
 
+# Generate export header for cross-platform symbol visibility
+include(GenerateExportHeader)
+generate_export_header(mlt
+  BASE_NAME mlt
+  EXPORT_MACRO_NAME MLT_API
+  EXPORT_FILE_NAME mlt_export.h
+  DEPRECATED_MACRO_NAME MLT_DEPRECATED
+  NO_EXPORT_MACRO_NAME MLT_NO_EXPORT
+  STATIC_DEFINE MLT_STATIC_DEFINE
+)
+
 target_sources(mlt PRIVATE ${MLT_PUBLIC_HEADERS})
 
 target_compile_options(mlt PRIVATE ${MLT_COMPILE_OPTIONS})
@@ -87,7 +97,6 @@ target_link_libraries(mlt PRIVATE Threads::Threads ${CMAKE_DL_LIBS})
 if(MSVC)
   target_link_libraries(mlt PRIVATE msvccompat PThreads4W::PThreads4W)
   target_link_libraries(mlt PUBLIC  ${GETTIMEOFDAY_LIBRARY})
-  target_compile_definitions(mlt PRIVATE MLT_EXPORTS)
   mlt_add_vcpkg_include_dirs(mlt)
 else()
   target_link_libraries(mlt PRIVATE m)
@@ -95,6 +104,7 @@ endif()
 
 target_include_directories(mlt PUBLIC
   $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/..>
+  $<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>
   $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}/mlt-${MLT_VERSION_MAJOR}>
 )
 
@@ -136,6 +146,11 @@ install(TARGETS mlt
   LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mlt-${MLT_VERSION_MAJOR}/framework
+)
+
+# Install the generated export header
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/mlt_export.h 
+  DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/mlt-${MLT_VERSION_MAJOR}/framework
 )
 
 install(FILES metaschema.yaml chain_normalizers.ini DESTINATION ${MLT_INSTALL_DATA_DIR})

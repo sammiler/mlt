@@ -24,7 +24,7 @@
 #define MLT_PLAYLIST_H
 
 #include "mlt_producer.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 /** \brief structure for returning clip information from a playlist entry
  */

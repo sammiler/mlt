@@ -24,7 +24,7 @@
 #define MLT_TRANSITION_H
 
 #include "mlt_service.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 #include <pthread.h>
 
 /** \brief Transition abstract service class

@@ -28,7 +28,7 @@
 #include "mlt_image.h"
 #include "mlt_properties.h"
 #include "mlt_service.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 /** Callback function to get video data.
  *

@@ -24,7 +24,7 @@
 #define MLT_PROPERTY_H
 
 #include "mlt_types.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 #if defined(__FreeBSD__)
 /* This header has existed since 1994 and defines __FreeBSD_version below. */

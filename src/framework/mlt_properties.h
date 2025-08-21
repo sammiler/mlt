@@ -25,7 +25,7 @@
 
 #include "mlt_events.h"
 #include "mlt_types.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 #include <stdio.h>
 
 /** \brief Properties class

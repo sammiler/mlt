@@ -24,7 +24,7 @@
 #define MLT_CACHE_H
 
 #include "mlt_types.h"
-#include "mlt_api.h"
+#include "mlt_export.h"
 
 MLT_API void *mlt_cache_item_data(mlt_cache_item item, int *size);
 MLT_API void mlt_cache_item_close(mlt_cache_item item);
