@@ -172,6 +172,7 @@ function(mlt_add_glaxnimate_module ARG_TARGET)
     )
 
     target_compile_options(${ARG_TARGET} PRIVATE ${MLT_COMPILE_OPTIONS})
+    target_compile_definitions(${ARG_TARGET} PRIVATE mlt_EXPORTS)
     add_definitions(-DWITHOUT_POTRACE -DWITHOUT_QT_COLOR_WIDGETS)
     
     # Fix for MSVC missing std::runtime_error include

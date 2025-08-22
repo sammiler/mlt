@@ -19,6 +19,8 @@ target_compile_options(mltoldfilm PRIVATE ${MLT_COMPILE_OPTIONS})
 target_link_libraries(mltoldfilm PRIVATE mlt)
 if(NOT MSVC)
   target_link_libraries(mltoldfilm PRIVATE m)
+else()
+  target_compile_definitions(mltoldfilm PRIVATE mlt_EXPORTS)
 endif()
 
 # Add pthread support for MSVC

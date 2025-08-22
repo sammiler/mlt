@@ -14,6 +14,8 @@ target_compile_options(mltnormalize PRIVATE ${MLT_COMPILE_OPTIONS})
 target_link_libraries(mltnormalize PRIVATE mlt)
 if(NOT MSVC)
   target_link_libraries(mltnormalize PRIVATE m)
+else()
+  target_compile_definitions(mltnormalize PRIVATE mlt_EXPORTS)
 endif()
 
 # Add pthread support for MSVC

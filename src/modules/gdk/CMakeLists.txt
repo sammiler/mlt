@@ -19,6 +19,7 @@ else()
   # Add pthread support for MSVC
   target_link_libraries(mltgdk PRIVATE PThreads4W::PThreads4W)
   mlt_add_vcpkg_include_dirs(mltgdk)
+  target_compile_definitions(mltgdk PRIVATE mlt_EXPORTS)
 endif()
 
 target_compile_definitions(mltgdk PRIVATE USE_PIXBUF)

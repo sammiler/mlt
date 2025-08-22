@@ -24,7 +24,7 @@ vcpkg_from_github(
     OUT_SOURCE_PATH VIDSTAB_SOURCE_PATH
     REPO georgmartius/vid.stab
     REF master
-    SHA512 a15654b50e1f548929d183b1ee9e2905b8ece8d57ad3ec0a7d179ba56809afccfc23f9e034e7f046c91c95f8cf33ff683e70e2f9af6b41fdd4863107dcc29b53
+    SHA512 a852b63c11d35dbf26e5d92832bfafeae244c73edd393ddc4a8445eedbd12fa592bdd8803377d5c322a2bbd6cf12757672af621673f6a845f25e7283c8d653b2
     HEAD_REF master
 )
 

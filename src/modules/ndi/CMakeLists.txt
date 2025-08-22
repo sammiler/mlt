@@ -14,6 +14,7 @@ target_compile_options(mltndi PRIVATE ${MLT_COMPILE_OPTIONS})
 target_link_libraries(mltndi PRIVATE mlt NDI::NDI)
 if(MSVC)
   target_link_libraries(mltndi PRIVATE msvccompat PThreads4W::PThreads4W)
+  target_compile_definitions(mltndi PRIVATE mlt_EXPORTS)
   mlt_add_vcpkg_include_dirs(mltndi)
 endif()
 

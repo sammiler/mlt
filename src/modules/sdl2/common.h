@@ -22,6 +22,15 @@
 
 #include <SDL.h>
 
+/* Import data symbol from core mlt on MSVC without sprinkling dllimport everywhere */
+#if !defined(MLT_IMPORT_DATA)
+#  if defined(_MSC_VER)
+#    define MLT_IMPORT_DATA __declspec(dllimport)
+#  else
+#    define MLT_IMPORT_DATA /* extern added at use site */
+#  endif
+#endif
+
 SDL_AudioDeviceID sdl2_open_audio(const SDL_AudioSpec *desired, SDL_AudioSpec *obtained);
 
 #endif // COMMON_H

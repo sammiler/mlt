@@ -12,6 +12,7 @@ target_link_libraries(mltopencv PRIVATE mlt ${OpenCV_LIBS})
 if(MSVC)
   target_link_libraries(mltopencv PRIVATE PThreads4W::PThreads4W)
   mlt_add_vcpkg_include_dirs(mltopencv)
+  target_compile_definitions(mltopencv PRIVATE mlt_EXPORTS)
 endif()
 
 set_target_properties(mltopencv PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${MLT_MODULE_OUTPUT_DIRECTORY}")

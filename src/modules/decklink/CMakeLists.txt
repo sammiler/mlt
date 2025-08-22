@@ -19,6 +19,7 @@ if(MSVC)
   # Include msvc compatibility headers
   target_include_directories(mltdecklink PRIVATE "${CMAKE_SOURCE_DIR}/src")
   mlt_add_vcpkg_include_dirs(mltdecklink)
+  target_compile_definitions(mltdecklink PRIVATE mlt_EXPORTS)
 else()
   target_link_libraries(mltdecklink PRIVATE m)
 endif()

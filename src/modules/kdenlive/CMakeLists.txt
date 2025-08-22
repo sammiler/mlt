@@ -19,6 +19,7 @@ if(NOT MSVC)
 else()
   target_link_libraries(mltkdenlive PRIVATE msvccompat PThreads4W::PThreads4W)
   mlt_add_vcpkg_include_dirs(mltkdenlive)
+  target_compile_definitions(mltkdenlive PRIVATE mlt_EXPORTS)
 endif()
 
 set_target_properties(mltkdenlive PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${MLT_MODULE_OUTPUT_DIRECTORY}")
