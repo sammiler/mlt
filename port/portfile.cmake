@@ -10,13 +10,15 @@ if(VCPKG_TARGET_TRIPLET MATCHES "mingw" OR VCPKG_TOOLCHAIN MATCHES "mingw")
     message(FATAL_ERROR "This port only supports MSVC compiler, not MinGW")
 endif()
 
-vcpkg_from_github(
-    OUT_SOURCE_PATH SOURCE_PATH
-    REPO sammiler/mlt
-    REF msvc-master
-    SHA512 c3023ca9b88bda686f5fb0821ade82d527c65e24bd5233d4850a45de81d7a7099f2e6203654d791ea16324e80c58c76b83d76c2dd8473a50893f48ab12f01431
-    HEAD_REF msvc-master
-)
+# If the VCPKG_MLT_SOURCE_DIR environment variable exists, use the local source (for CI)
+if(DEFINED ENV{VCPKG_MLT_SOURCE_DIR})
+    message(STATUS "CI MODE: Using local source for mlt from $ENV{VCPKG_MLT_SOURCE_DIR}")
+    set(SOURCE_PATH "$ENV{VCPKG_MLT_SOURCE_DIR}")
+else()
+    # For local compilation, you need to set VCPKG_MLT_SOURCE_DIR environment variable
+    # pointing to your local MLT source directory
+    message(FATAL_ERROR "CI MODE: VCPKG_MLT_SOURCE_DIR not defined")
+endif()
 
 # Handle submodules manually since vcpkg_from_github doesn't include .git
 # Download vid.stab submodule
