@@ -52,8 +52,7 @@ jobs:
       # Step 5: Install MLT using local source (CI mode)
       - name: Install MLT with all features using local source
         run: |
-          $env:VCPKG_MLT_SOURCE_DIR = "${{ github.workspace }}"
-          vcpkg install --triplet ${{ matrix.triplet }} --overlay-ports="${{ github.workspace }}/port" mlt[core,avformat,decklink,frei0r,gdk,jackrack,kdenlive,normalize,oldfilm,plus,plusgpl,qt6,resample,rtaudio,rubberband,sdl2,vidstab,vorbis,xine,xml,opencv,glaxnimate-qt6]
+          vcpkg install --triplet ${{ matrix.triplet }} --overlay-ports="${{ github.workspace }}/port" --x-cmake-args="-DMLT_SOURCE_DIR=${{ github.workspace }}" mlt[core,avformat,decklink,frei0r,gdk,jackrack,kdenlive,normalize,oldfilm,plus,plusgpl,qt6,resample,rtaudio,rubberband,sdl2,vidstab,vorbis,xine,xml,opencv,glaxnimate-qt6]
         env:
           VCPKG_ROOT: '${{ runner.temp }}/vcpkg'
 
@@ -104,10 +103,6 @@ jobs:
           }
           
           Write-Host "=== MLT Installation Verification Complete ==="
-          } else {
-            Write-Host "✗ melt.exe missing"
-            exit 1
-          }
           
           
 

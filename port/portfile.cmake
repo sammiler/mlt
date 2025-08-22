@@ -10,14 +10,18 @@ if(VCPKG_TARGET_TRIPLET MATCHES "mingw" OR VCPKG_TOOLCHAIN MATCHES "mingw")
     message(FATAL_ERROR "This port only supports MSVC compiler, not MinGW")
 endif()
 
-# If the VCPKG_MLT_SOURCE_DIR environment variable exists, use the local source (for CI)
-if(DEFINED ENV{VCPKG_MLT_SOURCE_DIR})
-    message(STATUS "CI MODE: Using local source for mlt from $ENV{VCPKG_MLT_SOURCE_DIR}")
-    set(SOURCE_PATH "$ENV{VCPKG_MLT_SOURCE_DIR}")
+# If MLT_SOURCE_DIR is provided as a CMake variable (e.g., via --x-cmake-args), use it
+if(DEFINED MLT_SOURCE_DIR)
+    message(STATUS "Using local source for mlt from CMake variable: ${MLT_SOURCE_DIR}")
+    set(SOURCE_PATH "${MLT_SOURCE_DIR}")
+# Else, if the MLT_SOURCE_DIR environment variable exists, use the local source (for CI)
+elseif(DEFINED ENV{MLT_SOURCE_DIR})
+    message(STATUS "Using local source for mlt from environment variable: $ENV{MLT_SOURCE_DIR}")
+    set(SOURCE_PATH "$ENV{MLT_SOURCE_DIR}")
 else()
-    # For local compilation, you need to set VCPKG_MLT_SOURCE_DIR environment variable
+    # For local compilation, you need to set MLT_SOURCE_DIR
     # pointing to your local MLT source directory
-    message(FATAL_ERROR "VCPKG_MLT_SOURCE_DIR not defined. You need to set the environment variable to point to your local MLT source code directory.")
+    message(FATAL_ERROR "MLT_SOURCE_DIR not defined. You need to set the CMake variable (via VCPKG_CMAKE_CONFIGURE_OPTIONS) or an environment variable to point to your local MLT source code directory.")
 endif()
 
 # Handle submodules manually since vcpkg_from_github doesn't include .git
