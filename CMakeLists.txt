@@ -249,9 +249,12 @@ endif()
 
 if(MOD_FREI0R)
   if(MSVC)
+      # NOTE: FetchContent cannot be used here. vcpkg builds in a sandboxed
+      # environment that blocks network access during configure/build.
+      # Dependencies must be declared in vcpkg.json and found via find_package().
     set(FREI0R_DIR "${CMAKE_CURRENT_SOURCE_DIR}/external/frei0r")
     if(NOT EXISTS "${FREI0R_DIR}/CMakeLists.txt")
-      message(FATAL_ERROR  "Please consider using vcpkg with the MLT  port.")
+      message(FATAL_ERROR  "Please consider using vcpkg with the MLT port or git clone by yourself")
     endif()
   set(FREI0R_OLD_MODULE_PATH ${CMAKE_MODULE_PATH})
   list(PREPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/external/frei0r/cmake/modules")
@@ -414,29 +417,17 @@ endif()
 if(MOD_VIDSTAB)
   pkg_check_modules(vidstab IMPORTED_TARGET vidstab)
   if(MSVC)
-    if(NOT TARGET PkgConfig::vidstab)
-      message(
-        STATUS
-        "pkg-config failed for vidstab, trying to build from vcpkg..."
-      )
-
+      # NOTE: FetchContent cannot be used here. vcpkg builds in a sandboxed
+      # environment that blocks network access during configure/build.
+      # Dependencies must be declared in vcpkg.json and found via find_package().
       if(NOT IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/external/vid.stab)
         message(
           FATAL_ERROR
-          "VidStab module is enabled, but the directory 'external/vid.stab' does not exist. "
-          "Please use the vcpkg mlt port to install it."
+          "The directory 'external/vid.stab' does not exist. "
+          "Please use the vcpkg mlt port to install it or git clone by yourself"
         )
       endif()
-
-      # Save the current CMAKE_MODULE_PATH and add vid.stab's module path
-      set(VIDSTAB_OLD_MODULE_PATH ${CMAKE_MODULE_PATH})
-      list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/external/vid.stab/CMakeModules")
-
       add_subdirectory(external/vid.stab)
-
-      # Restore the original CMAKE_MODULE_PATH
-      set(CMAKE_MODULE_PATH ${VIDSTAB_OLD_MODULE_PATH})
-
       if(TARGET vidstab)
         add_library(PkgConfig::vidstab INTERFACE IMPORTED)
         target_link_libraries(PkgConfig::vidstab INTERFACE vidstab)
@@ -451,7 +442,6 @@ if(MOD_VIDSTAB)
           "Could not find the 'vidstab' target after add_subdirectory. The module might fail to link."
         )
       endif()
-    endif()
   endif()
   if(TARGET PkgConfig::vidstab)
     list(APPEND MLT_SUPPORTED_COMPONENTS vidstab)
