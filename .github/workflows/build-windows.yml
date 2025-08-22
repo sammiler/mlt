@@ -1,4 +1,4 @@
-name: 'Build MLT on Windows via vcpkg'
+name: 'build-windows'
 
 on:
   push:
@@ -52,11 +52,12 @@ jobs:
       # Step 5: Install MLT using local source (CI mode)
       - name: Install MLT with all features using local source
         run: |
+          $env:VCPKG_MLT_SOURCE_DIR = "${{ github.workspace }}"
+          Write-Host "DEBUG: VCPKG_MLT_SOURCE_DIR = $env:VCPKG_MLT_SOURCE_DIR"
+          Write-Host "DEBUG: GITHUB_WORKSPACE = ${{ github.workspace }}"
           vcpkg install --triplet ${{ matrix.triplet }} --overlay-ports="${{ github.workspace }}/port" mlt[core,avformat,decklink,frei0r,gdk,jackrack,kdenlive,normalize,oldfilm,plus,plusgpl,qt6,resample,rtaudio,rubberband,sdl2,vidstab,vorbis,xine,xml,opencv,glaxnimate-qt6]
         env:
           VCPKG_ROOT: '${{ runner.temp }}/vcpkg'
-          # Key setting: Tell portfile.cmake to use local source instead of downloading
-          VCPKG_MLT_SOURCE_DIR: '${{ github.workspace }}'
 
       # Step 6: Verify installation results
       - name: Verify MLT installation

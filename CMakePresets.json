@@ -13,7 +13,7 @@
       "description": "Use the MSVC compiler and vcpkg on Windows",
       "generator": "Ninja",
       "binaryDir": "${sourceDir}/build",
-      "toolchainFile": "D:/dev/vcpkg_/scripts/buildsystems/vcpkg.cmake",
+      "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
       "cacheVariables": {
         "CMAKE_C_COMPILER": "cl",
         "CMAKE_CXX_COMPILER": "cl",

@@ -17,7 +17,7 @@ if(DEFINED ENV{VCPKG_MLT_SOURCE_DIR})
 else()
     # For local compilation, you need to set VCPKG_MLT_SOURCE_DIR environment variable
     # pointing to your local MLT source directory
-    message(FATAL_ERROR "CI MODE: VCPKG_MLT_SOURCE_DIR not defined")
+    message(FATAL_ERROR "VCPKG_MLT_SOURCE_DIR not defined. You need to set the environment variable to point to your local MLT source code directory.")
 endif()
 
 # Handle submodules manually since vcpkg_from_github doesn't include .git

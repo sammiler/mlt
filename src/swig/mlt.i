@@ -19,6 +19,7 @@
 
 %module mlt
 %define MLT_API
+%enddef
 %include "carrays.i"
 %array_class(unsigned char, UnsignedCharArray);
 

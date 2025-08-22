@@ -19,10 +19,6 @@
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
  */
 
-#ifdef SWIG
-#define MLT_API
-#endif
-
 #ifndef MLT_TYPES_H
 #define MLT_TYPES_H
 
