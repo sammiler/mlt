@@ -178,3 +178,14 @@ If there are issues, check the build logs and update the SHA512 hash in `portfil
 ## Full Features
 
 vcpkg install mlt[core,avformat,decklink,frei0r,gdk,jackrack,kdenlive,normalize,oldfilm,plus,plusgpl,qt6,resample,rtaudio,rubberband,sdl2,vidstab,vorbis,xine,xml,opencv,glaxnimate-qt6]
+
+## MLT Environment Variables
+
+When using MLT, you may need to set the following environment variables to ensure it can locate its resources:
+=== MLT Environment Variables ===
+MLT_REPOSITORY=env{VCPKG_ROOT}\installed\x64-windows\lib\mlt
+MLT_DATA=env{VCPKG_ROOT}\installed\x64-windows\share\mlt
+MLT_APPDIR=env{VCPKG_ROOT}\installed\x64-windows
+MLT_PROFILES_PATH=env{VCPKG_ROOT}\installed\x64-windows\share\mlt\profiles
+MLT_PRESETS_PATH=env{VCPKG_ROOT}\installed\x64-windows\share\mlt\presets
+FREI0R_PATH=env{VCPKG_ROOT}\installed\x64-windows\lib\frei0r-1
