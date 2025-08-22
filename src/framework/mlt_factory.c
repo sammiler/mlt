@@ -139,16 +139,24 @@ mlt_repository mlt_factory_init(const char *directory)
                                       PREFIX_DATA);
 
 #if defined(_WIN32)
-        char path[1024];
-        DWORD size = sizeof(path);
-        GetModuleFileName(NULL, path, size);
+        // First check if MLT_APPDIR is already set by the user
+        char *env_appdir = getenv("MLT_APPDIR");
+        if (env_appdir != NULL) {
+            // Use the user-provided path
+            mlt_properties_set(global_properties, "MLT_APPDIR", env_appdir);
+        } else {
+            // Fall back to executable path
+            char path[1024];
+            DWORD size = sizeof(path);
+            GetModuleFileName(NULL, path, size);
 #ifndef NODEPLOY
-        char *appdir = mlt_dirname(strdup(path));
+            char *appdir = mlt_dirname(strdup(path));
 #else
-        char *appdir = mlt_dirname(mlt_dirname(strdup(path)));
+            char *appdir = mlt_dirname(mlt_dirname(strdup(path)));
 #endif
-        mlt_properties_set(global_properties, "MLT_APPDIR", appdir);
-        free(appdir);
+            mlt_properties_set(global_properties, "MLT_APPDIR", appdir);
+            free(appdir);
+        }
 #elif defined(RELOCATABLE)
         char path[1024];
         uint32_t size = sizeof(path);
