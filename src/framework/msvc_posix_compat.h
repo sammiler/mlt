@@ -40,6 +40,9 @@ static inline int write(int fd, const void *buffer, unsigned int count)
     return _write(fd, buffer, count);
 }
 
+
+
+
 #endif // _MSC_VER
 
 #endif // MSVC_COMPAT_H
