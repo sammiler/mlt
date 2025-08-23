@@ -298,9 +298,7 @@ endif()
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
     OPTIONS
-        # Prevent CMake from incorrectly detecting GNU-style __deprecated__ with MSVC
-        -DCMAKE_C_COMPILER_HAS_DEPRECATED_ATTR:BOOL=FALSE
-        -DCMAKE_CXX_COMPILER_HAS_DEPRECATED_ATTR:BOOL=FALSE
+    -C "${CURRENT_PORT_DIR}/msvc-no-depr.cmake"
     -DCMAKE_CXX_STANDARD=20
         # Core build options
         -DGPL=ON
