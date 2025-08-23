@@ -1,4 +1,4 @@
-name: build-windows
+name: 'build-windows'
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
     branches: [ "master", "msvc-master" ]
 
 env:
+  # Use fixed vcpkg version to ensure build stability
   VCPKG_COMMIT: '6ecbbbdf31cba47aafa7cf6189b1e73e10ac61f8'
-  VCPKG_BINARY_SOURCES: "clear;default,readwrite"
 
 jobs:
   build-windows-msvc:
@@ -30,34 +30,29 @@ jobs:
       - name: Setup MSVC
         uses: microsoft/setup-msbuild@v2
 
-      # Step 3: Setup vcpkg
+      # Step 3: Install and setup vcpkg
       - name: Setup vcpkg
         uses: lukka/run-vcpkg@v11
         with:
           vcpkgGitCommitId: ${{ env.VCPKG_COMMIT }}
           vcpkgDirectory: '${{ runner.temp }}/vcpkg'
 
-      # Step 4: Cache vcpkg artifacts
+      # Step 4: Cache vcpkg binary files to speed up builds
       - name: Cache vcpkg packages
         uses: actions/cache@v4
         with:
           path: |
             ${{ runner.temp }}/vcpkg/downloads
             ${{ runner.temp }}/vcpkg/installed
-            ${{ runner.temp }}/vcpkg/buildtrees
           key: vcpkg-${{ matrix.triplet }}-${{ env.VCPKG_COMMIT }}-${{ hashFiles('port/vcpkg.json') }}
           restore-keys: |
             vcpkg-${{ matrix.triplet }}-${{ env.VCPKG_COMMIT }}-
             vcpkg-${{ matrix.triplet }}-
 
-      # Step 5: Install MLT (overlay port)
+      # Step 5: Install MLT using local source (CI mode)
       - name: Install MLT with all features using local source
         run: |
-          vcpkg install `
-            --triplet ${{ matrix.triplet }} `
-            --overlay-ports="${{ github.workspace }}/port" `
-            --x-cmake-args="-DMLT_SOURCE_DIR=${{ github.workspace }}" `
-            mlt[core,avformat,decklink,frei0r,gdk,jackrack,kdenlive,normalize,oldfilm,plus,plusgpl,qt6,resample,rtaudio,rubberband,sdl2,vidstab,vorbis,xine,xml,opencv,glaxnimate-qt6]
+          vcpkg install --triplet ${{ matrix.triplet }} --overlay-ports="${{ github.workspace }}/port" --x-cmake-args="-DMLT_SOURCE_DIR=${{ github.workspace }}" mlt[core,avformat,decklink,frei0r,gdk,jackrack,kdenlive,normalize,oldfilm,plus,plusgpl,qt6,resample,rtaudio,rubberband,sdl2,vidstab,vorbis,xine,xml,opencv,glaxnimate-qt6]
         env:
           VCPKG_ROOT: '${{ runner.temp }}/vcpkg'
 
@@ -108,6 +103,3 @@ jobs:
           }
           
           Write-Host "=== MLT Installation Verification Complete ==="
-          
-          
-
