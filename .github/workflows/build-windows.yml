@@ -54,6 +54,12 @@ jobs:
         run: |
           # Remove existing MLT installation to force rebuild
           vcpkg remove mlt --triplet ${{ matrix.triplet }} || echo "MLT not found, continuing..."
+          # Clean up any previous MLT build directories to ensure fresh copy from workspace
+          Remove-Item -Path "${{ runner.temp }}/vcpkg/buildtrees/mlt" -Recurse -Force -ErrorAction SilentlyContinue
+          # Clean downloads cache to force fresh download of dependencies
+          Remove-Item -Path "${{ runner.temp }}/vcpkg/downloads/*vid.stab*" -Force -ErrorAction SilentlyContinue
+          Remove-Item -Path "${{ runner.temp }}/vcpkg/downloads/*frei0r*" -Force -ErrorAction SilentlyContinue  
+          Remove-Item -Path "${{ runner.temp }}/vcpkg/downloads/*glaxnimate*" -Force -ErrorAction SilentlyContinue
           vcpkg install --triplet ${{ matrix.triplet }} --overlay-ports="${{ github.workspace }}/port" --x-cmake-args="-DMLT_SOURCE_DIR=${{ github.workspace }}" mlt[core,avformat,decklink,frei0r,gdk,jackrack,kdenlive,normalize,oldfilm,plus,plusgpl,qt6,resample,rtaudio,rubberband,sdl2,vidstab,vorbis,xine,xml,opencv,glaxnimate-qt6]
         env:
           VCPKG_ROOT: '${{ runner.temp }}/vcpkg'
