@@ -293,11 +293,7 @@ else()
     list(APPEND FEATURE_OPTIONS "-DMOD_XML=OFF")
 endif()
 
-# Set vcpkg specific compiler flags for MSVC
-if(VCPKG_TARGET_IS_WINDOWS AND NOT VCPKG_TARGET_TRIPLET MATCHES "mingw")
-    set(VCPKG_CXX_FLAGS "/permissive /std:c++20")
-    set(VCPKG_C_FLAGS "")
-endif()
+
 
 vcpkg_cmake_configure(
     SOURCE_PATH "${SOURCE_PATH}"
