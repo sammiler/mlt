@@ -56,8 +56,6 @@ extern "C" {
 //#endif
 #ifdef _MSC_VER
 #include <framework/msvc_posix_compat.h>
-#else
-#include <alloca.h>
 #endif
 #include <stdio.h>
 #include <string.h>
