@@ -9,9 +9,7 @@ generate_export_header(mltresample)
 target_compile_options(mltresample PRIVATE ${MLT_COMPILE_OPTIONS})
 target_include_directories(mltresample PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(mltresample PRIVATE mlt PkgConfig::samplerate)
-if(MSVC)
-  target_compile_definitions(mltresample PRIVATE mlt_EXPORTS)
-endif()
+
 
 set_target_properties(mltresample PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${MLT_MODULE_OUTPUT_DIRECTORY}")
 

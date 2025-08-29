@@ -15,14 +15,11 @@ target_include_directories(mltnormalize PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(mltnormalize PRIVATE mlt)
 if(NOT MSVC)
   target_link_libraries(mltnormalize PRIVATE m)
-else()
-  target_compile_definitions(mltnormalize PRIVATE mlt_EXPORTS)
 endif()
 
 # Add pthread support for MSVC
 if(MSVC)
   target_link_libraries(mltnormalize PRIVATE PThreads4W::PThreads4W)
-  mlt_add_vcpkg_include_dirs(mltnormalize)
 endif()
 
 set_target_properties(mltnormalize PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${MLT_MODULE_OUTPUT_DIRECTORY}")

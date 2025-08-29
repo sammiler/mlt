@@ -27,8 +27,7 @@ endif()
 # Create a simple test executable
 add_executable(mlt_test main.cpp)
 
-# Apply vcpkg include directories
-mlt_add_vcpkg_include_dirs(mlt_test)
+
 
 # Link against MLT libraries and pthread
 if(MSVC)

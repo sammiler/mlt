@@ -13,9 +13,7 @@ target_include_directories(mltrtaudio PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(mltrtaudio PRIVATE mlt Threads::Threads)
 
 if(MSVC)
-  target_link_libraries(mltrtaudio PRIVATE msvccompat ${GETTIMEOFDAY_LIBRARY} PThreads4W::PThreads4W)
-  mlt_add_vcpkg_include_dirs(mltrtaudio)
-  target_compile_definitions(mltrtaudio PRIVATE mlt_EXPORTS)
+  target_link_libraries(mltrtaudio PRIVATE  ${GETTIMEOFDAY_LIBRARY} PThreads4W::PThreads4W)
 endif()
 
 if(TARGET PkgConfig::rtaudio)

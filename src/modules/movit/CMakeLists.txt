@@ -41,7 +41,6 @@ if(NOT MSVC)
   target_link_libraries(mltmovit PRIVATE m)
 else()
   target_link_libraries(mltmovit PRIVATE msvccompat)
-  target_compile_definitions(mltmovit PRIVATE mlt_EXPORTS)
 endif()
 
 if(UNIX AND NOT APPLE)

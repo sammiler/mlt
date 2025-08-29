@@ -18,8 +18,6 @@ if(MSVC)
   target_link_libraries(mltvidstab PRIVATE msvccompat PThreads4W::PThreads4W)
   # Add vid.stab headers from external directory for MSVC
   target_include_directories(mltvidstab PRIVATE ${CMAKE_SOURCE_DIR}/external/vid.stab/src)
-  mlt_add_vcpkg_include_dirs(mltvidstab)
-  target_compile_definitions(mltvidstab PRIVATE mlt_EXPORTS)
 else()
   target_link_libraries(mltvidstab PRIVATE m)
 endif()

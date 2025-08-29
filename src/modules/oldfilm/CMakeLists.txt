@@ -20,14 +20,11 @@ target_include_directories(mltoldfilm PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(mltoldfilm PRIVATE mlt)
 if(NOT MSVC)
   target_link_libraries(mltoldfilm PRIVATE m)
-else()
-  target_compile_definitions(mltoldfilm PRIVATE mlt_EXPORTS)
 endif()
 
 # Add pthread support for MSVC
 if(MSVC)
   target_link_libraries(mltoldfilm PRIVATE PThreads4W::PThreads4W)
-  mlt_add_vcpkg_include_dirs(mltoldfilm)
 endif()
 
 set_target_properties(mltoldfilm PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${MLT_MODULE_OUTPUT_DIRECTORY}")

@@ -38,9 +38,7 @@ target_link_libraries(mltavformat PRIVATE
 )
 
 if(MSVC)
-  target_link_libraries(mltavformat PRIVATE msvccompat PThreads4W::PThreads4W)
-  mlt_add_vcpkg_include_dirs(mltavformat)
-  target_compile_definitions(mltavformat PRIVATE mlt_EXPORTS)
+  target_link_libraries(mltavformat PRIVATE  PThreads4W::PThreads4W)
 else()
    target_link_libraries(mltavformat PRIVATE m)
 endif()
