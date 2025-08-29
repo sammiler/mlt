@@ -37,9 +37,7 @@
 #ifndef _MSC_VER
 #include <unistd.h>
 #include <strings.h>
-#include <alloca.h>
-#endif
-#ifdef _MSC_VER
+#else
 #include <framework/msvc_posix_compat.h>
 #endif
 // includes for socket IO
