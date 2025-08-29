@@ -75,10 +75,10 @@
  * \see mlt_vlog
  */
 #ifdef __GNUC__
-MLT_API void mlt_log(void *service, int level, const char *fmt, ...)
+MLT_EXPORT void mlt_log(void *service, int level, const char *fmt, ...)
     __attribute__((__format__(__printf__, 3, 4)));
 #else
-MLT_API void mlt_log(void *service, int level, const char *fmt, ...);
+MLT_EXPORT void mlt_log(void *service, int level, const char *fmt, ...);
 #endif
 
 #ifdef _MSC_VER
@@ -119,8 +119,8 @@ MLT_API void mlt_log(void *service, int level, const char *fmt, ...);
 #endif
 
 void mlt_vlog(void *service, int level, const char *fmt, va_list);
-MLT_API int mlt_log_get_level(void);
-MLT_API void mlt_log_set_level(int);
+MLT_EXPORT int mlt_log_get_level(void);
+MLT_EXPORT void mlt_log_set_level(int);
 void mlt_log_set_callback(void (*)(void *, int, const char *, va_list));
 
 #define mlt_log_timings_begin() \
@@ -137,6 +137,6 @@ void mlt_log_set_callback(void (*)(void *, int, const char *, va_list));
                     _mlt_log_timings_end - _mlt_log_timings_begin); \
     }
 
-MLT_API int64_t mlt_log_timings_now(void);
+MLT_EXPORT int64_t mlt_log_timings_now(void);
 
 #endif /* MLT_LOG_H */

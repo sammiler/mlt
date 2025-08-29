@@ -5,6 +5,8 @@ add_custom_target(Other_jackrack_Files SOURCES
   ${YML}
 )
 
+include(GenerateExportHeader)
+generate_export_header(mltjackrack)
 target_compile_options(mltjackrack PRIVATE ${MLT_COMPILE_OPTIONS})
 
 target_link_libraries(mltjackrack PRIVATE mlt Threads::Threads)
@@ -13,9 +15,9 @@ target_link_libraries(mltjackrack PRIVATE mlt Threads::Threads)
 if(MSVC)
   target_link_libraries(mltjackrack PRIVATE PThreads4W::PThreads4W)
   mlt_add_vcpkg_include_dirs(mltjackrack)
-  target_compile_definitions(mltjackrack PRIVATE mlt_EXPORTS)
 endif()
 
+target_include_directories(mltjackrack PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 if(TARGET JACK::JACK)
   target_sources(mltjackrack PRIVATE consumer_jack.c)
   target_link_libraries(mltjackrack PRIVATE JACK::JACK)
@@ -38,8 +40,6 @@ if(GPL AND TARGET PkgConfig::xml AND TARGET PkgConfig::glib AND ladspa_h_FOUND)
   target_link_libraries(mltjackrack PRIVATE ${CMAKE_DL_LIBS} PkgConfig::xml PkgConfig::glib)
   if(NOT MSVC)
     target_link_libraries(mltjackrack PRIVATE m)
-  else()
-    target_link_libraries(mltjackrack PRIVATE msvccompat)
   endif()
   target_compile_definitions(mltjackrack PRIVATE GPL)
   if(RELOCATABLE)
@@ -58,6 +58,10 @@ set_target_properties(mltjackrack PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${MLT_MOD
 
 add_library(mltladspa MODULE factory.c)
 
+
+generate_export_header(mltladspa
+  EXPORT_MACRO_NAME MLTLADSPA_EXPORT
+)
 target_compile_options(mltladspa PRIVATE ${MLT_COMPILE_OPTIONS})
 
 target_link_libraries(mltladspa PRIVATE mlt Threads::Threads)
@@ -66,7 +70,6 @@ target_link_libraries(mltladspa PRIVATE mlt Threads::Threads)
 if(MSVC)
   find_package(PThreads4W REQUIRED)
   target_link_libraries(mltladspa PRIVATE PThreads4W::PThreads4W)
-  target_compile_definitions(mltladspa PRIVATE mlt_EXPORTS)
   mlt_add_vcpkg_include_dirs(mltladspa)
 endif()
 
@@ -127,6 +130,7 @@ if(GPL AND TARGET PkgConfig::xml AND TARGET PkgConfig::glib AND ladspa_h_FOUND)
     install(FILES filter_vst2.yml producer_vst2.yml DESTINATION ${MLT_INSTALL_DATA_DIR}/jackrack)
   endif()
 
+  target_include_directories(mltladspa PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 endif()
 
 set_target_properties(mltladspa PROPERTIES LIBRARY_OUTPUT_DIRECTORY "${MLT_MODULE_OUTPUT_DIRECTORY}")

@@ -34,18 +34,18 @@ struct mlt_slices_s;
 
 typedef int (*mlt_slices_proc)(int id, int idx, int jobs, void *cookie);
 
-MLT_API int mlt_slices_count_normal();
+MLT_EXPORT int mlt_slices_count_normal();
 
-MLT_API int mlt_slices_count_rr();
+MLT_EXPORT int mlt_slices_count_rr();
 
-MLT_API int mlt_slices_count_fifo();
+MLT_EXPORT int mlt_slices_count_fifo();
 
-MLT_API void mlt_slices_run_normal(int jobs, mlt_slices_proc proc, void *cookie);
+MLT_EXPORT void mlt_slices_run_normal(int jobs, mlt_slices_proc proc, void *cookie);
 
-MLT_API void mlt_slices_run_rr(int jobs, mlt_slices_proc proc, void *cookie);
+MLT_EXPORT void mlt_slices_run_rr(int jobs, mlt_slices_proc proc, void *cookie);
 
-MLT_API void mlt_slices_run_fifo(int jobs, mlt_slices_proc proc, void *cookie);
+MLT_EXPORT void mlt_slices_run_fifo(int jobs, mlt_slices_proc proc, void *cookie);
 
-MLT_API int mlt_slices_size_slice(int jobs, int index, int input_size, int *start);
+MLT_EXPORT int mlt_slices_size_slice(int jobs, int index, int input_size, int *start);
 
 #endif

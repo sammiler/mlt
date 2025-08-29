@@ -140,7 +140,7 @@ file(GLOB YML "*.yml")
 add_custom_target(Other_glaxnimate_Files SOURCES
   ${YML}
 )
-
+include(GenerateExportHeader)
 function(mlt_add_glaxnimate_module ARG_TARGET)
     cmake_parse_arguments(PARSE_ARGV 1 ARG "" "QT_VERSION;DATADIR" "")
 
@@ -171,18 +171,22 @@ function(mlt_add_glaxnimate_module ARG_TARGET)
       ${GLAX_SOURCES}
     )
 
+    string(REPLACE "-" "_" EXPORT_MACRO_PREFIX ${ARG_TARGET})
+    generate_export_header(${ARG_TARGET}
+        EXPORT_FILE_NAME "${EXPORT_MACRO_PREFIX}_export.h"
+        EXPORT_MACRO_NAME "${EXPORT_MACRO_PREFIX}_EXPORT"
+    )
     target_compile_options(${ARG_TARGET} PRIVATE ${MLT_COMPILE_OPTIONS})
-    target_compile_definitions(${ARG_TARGET} PRIVATE mlt_EXPORTS)
     add_definitions(-DWITHOUT_POTRACE -DWITHOUT_QT_COLOR_WIDGETS)
-    
+
     # Fix for MSVC missing std::runtime_error include
     if(MSVC)
-        target_compile_definitions(${ARG_TARGET} PRIVATE 
+        target_compile_definitions(${ARG_TARGET} PRIVATE
             _HAS_EXCEPTIONS=1
             _ENABLE_EXTENDED_ALIGNED_STORAGE
         )
-        target_compile_options(${ARG_TARGET} PRIVATE 
-            /EHsc 
+        target_compile_options(${ARG_TARGET} PRIVATE
+            /EHsc
             /FIstdexcept
             /Zc:__cplusplus
             /utf-8
@@ -207,12 +211,13 @@ function(mlt_add_glaxnimate_module ARG_TARGET)
       ${LibArchive_LIBRARIES}
       ZLIB::ZLIB
     )
-    
+
     # Link math library on non-MSVC platforms
     if(NOT MSVC)
       target_link_libraries(${ARG_TARGET} PRIVATE m)
     endif()
 
+    target_include_directories(${ARG_TARGET} PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
     if(NOT WINDOWS_DEPLOY)
       target_compile_definitions(${ARG_TARGET} PRIVATE NODEPLOY)
     endif()

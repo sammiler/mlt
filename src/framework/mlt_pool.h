@@ -24,12 +24,12 @@
 #define MLT_POOL_H
 
 #include "mlt_export.h"
-MLT_API void mlt_pool_init();
-MLT_API void *mlt_pool_alloc(int size);
-MLT_API void *mlt_pool_realloc(void *ptr, int size);
-MLT_API void mlt_pool_release(void *release);
-MLT_API void mlt_pool_purge();
-MLT_API void mlt_pool_close();
-MLT_API void mlt_pool_stat();
+MLT_EXPORT void mlt_pool_init();
+MLT_EXPORT void *mlt_pool_alloc(int size);
+MLT_EXPORT void *mlt_pool_realloc(void *ptr, int size);
+MLT_EXPORT void mlt_pool_release(void *release);
+MLT_EXPORT void mlt_pool_purge();
+MLT_EXPORT void mlt_pool_close();
+MLT_EXPORT void mlt_pool_stat();
 
 #endif

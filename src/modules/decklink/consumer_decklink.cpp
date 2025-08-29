@@ -38,6 +38,7 @@
 #ifndef _MSC_VER
 #include <unistd.h>
 #endif
+#include "mltdecklink_export.h"
 #define SWAB_SLICED_ALIGN_POW 5
 static int swab_sliced(int id, int idx, int jobs, void *cookie)
 {
@@ -1263,7 +1264,7 @@ static mlt_properties metadata(mlt_service_type type, const char *id, void *data
     return mlt_properties_parse_yaml(file);
 }
 
-MLT_REPOSITORY
+MLTDECKLINK_EXPORT MLT_REPOSITORY
 {
     MLT_REGISTER(mlt_service_consumer_type, "decklink", consumer_decklink_init);
     MLT_REGISTER(mlt_service_producer_type, "decklink", producer_decklink_init);

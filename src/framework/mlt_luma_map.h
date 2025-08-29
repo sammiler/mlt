@@ -52,11 +52,11 @@ struct mlt_luma_map_s
 
 typedef struct mlt_luma_map_s *mlt_luma_map;
 
-MLT_API void mlt_luma_map_init(mlt_luma_map self);
-MLT_API mlt_luma_map mlt_luma_map_new(const char *path);
-MLT_API uint16_t *mlt_luma_map_render(mlt_luma_map self);
-MLT_API int mlt_luma_map_from_pgm(const char *filename, uint16_t **map, int *width, int *height);
-MLT_API void mlt_luma_map_from_yuv422(uint8_t *image, uint16_t **map, int width, int height);
+MLT_EXPORT void mlt_luma_map_init(mlt_luma_map self);
+MLT_EXPORT mlt_luma_map mlt_luma_map_new(const char *path);
+MLT_EXPORT uint16_t *mlt_luma_map_render(mlt_luma_map self);
+MLT_EXPORT int mlt_luma_map_from_pgm(const char *filename, uint16_t **map, int *width, int *height);
+MLT_EXPORT void mlt_luma_map_from_yuv422(uint8_t *image, uint16_t **map, int width, int height);
 
 #ifdef __cplusplus
 }

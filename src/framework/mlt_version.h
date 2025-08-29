@@ -34,10 +34,10 @@
 #define LIBMLT_VERSION \
     MLT_STRINGIZE(LIBMLT_VERSION_MAJOR.LIBMLT_VERSION_MINOR.LIBMLT_VERSION_REVISION)
 
-MLT_API int mlt_version_get_int();
-MLT_API int mlt_version_get_major();
-MLT_API int mlt_version_get_minor();
-MLT_API int mlt_version_get_revision();
-MLT_API char *mlt_version_get_string();
+MLT_EXPORT int mlt_version_get_int();
+MLT_EXPORT int mlt_version_get_major();
+MLT_EXPORT int mlt_version_get_minor();
+MLT_EXPORT int mlt_version_get_revision();
+MLT_EXPORT char *mlt_version_get_string();
 
 #endif

@@ -48,18 +48,18 @@ struct mlt_profile_s
     int is_explicit; /**< used internally to indicate if the profile was requested explicitly or computed or defaulted */
 };
 
-MLT_API mlt_profile mlt_profile_init(const char *name);
-MLT_API mlt_profile mlt_profile_load_file(const char *file);
-MLT_API mlt_profile mlt_profile_load_properties(mlt_properties properties);
-MLT_API mlt_profile mlt_profile_load_string(const char *string);
-MLT_API double mlt_profile_fps(mlt_profile profile);
-MLT_API double mlt_profile_sar(mlt_profile profile);
-MLT_API double mlt_profile_dar(mlt_profile profile);
-MLT_API void mlt_profile_close(mlt_profile profile);
-MLT_API mlt_profile mlt_profile_clone(mlt_profile profile);
-MLT_API mlt_properties mlt_profile_list();
-MLT_API void mlt_profile_from_producer(mlt_profile profile, mlt_producer producer);
-MLT_API char *mlt_profile_lumas_dir(mlt_profile profile);
-MLT_API double mlt_profile_scale_width(mlt_profile profile, int width);
-MLT_API double mlt_profile_scale_height(mlt_profile profile, int height);
+MLT_EXPORT mlt_profile mlt_profile_init(const char *name);
+MLT_EXPORT mlt_profile mlt_profile_load_file(const char *file);
+MLT_EXPORT mlt_profile mlt_profile_load_properties(mlt_properties properties);
+MLT_EXPORT mlt_profile mlt_profile_load_string(const char *string);
+MLT_EXPORT double mlt_profile_fps(mlt_profile profile);
+MLT_EXPORT double mlt_profile_sar(mlt_profile profile);
+MLT_EXPORT double mlt_profile_dar(mlt_profile profile);
+MLT_EXPORT void mlt_profile_close(mlt_profile profile);
+MLT_EXPORT mlt_profile mlt_profile_clone(mlt_profile profile);
+MLT_EXPORT mlt_properties mlt_profile_list();
+MLT_EXPORT void mlt_profile_from_producer(mlt_profile profile, mlt_producer producer);
+MLT_EXPORT char *mlt_profile_lumas_dir(mlt_profile profile);
+MLT_EXPORT double mlt_profile_scale_width(mlt_profile profile, int width);
+MLT_EXPORT double mlt_profile_scale_height(mlt_profile profile, int height);
 #endif

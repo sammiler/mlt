@@ -60,26 +60,26 @@
  *   the event data is a pointer to mlt_factory_event_data
  */
 
-MLT_API mlt_repository mlt_factory_init(const char *directory);
-MLT_API mlt_repository mlt_factory_repository();
-MLT_API const char *mlt_factory_directory();
-MLT_API char *mlt_environment(const char *name);
-MLT_API int mlt_environment_set(const char *name, const char *value);
-MLT_API mlt_properties mlt_factory_event_object();
-MLT_API mlt_producer mlt_factory_producer(mlt_profile profile,
+MLT_EXPORT mlt_repository mlt_factory_init(const char *directory);
+MLT_EXPORT mlt_repository mlt_factory_repository();
+MLT_EXPORT const char *mlt_factory_directory();
+MLT_EXPORT char *mlt_environment(const char *name);
+MLT_EXPORT int mlt_environment_set(const char *name, const char *value);
+MLT_EXPORT mlt_properties mlt_factory_event_object();
+MLT_EXPORT mlt_producer mlt_factory_producer(mlt_profile profile,
                                          const char *service,
                                          const void *resource);
-MLT_API mlt_filter mlt_factory_filter(mlt_profile profile, const char *service, const void *input);
-MLT_API mlt_link mlt_factory_link(const char *service, const void *input);
-MLT_API mlt_transition mlt_factory_transition(mlt_profile profile,
+MLT_EXPORT mlt_filter mlt_factory_filter(mlt_profile profile, const char *service, const void *input);
+MLT_EXPORT mlt_link mlt_factory_link(const char *service, const void *input);
+MLT_EXPORT mlt_transition mlt_factory_transition(mlt_profile profile,
                                              const char *service,
                                              const void *input);
-MLT_API mlt_consumer mlt_factory_consumer(mlt_profile profile,
+MLT_EXPORT mlt_consumer mlt_factory_consumer(mlt_profile profile,
                                          const char *service,
                                          const void *input);
-MLT_API void mlt_factory_register_for_clean_up(void *ptr, mlt_destructor destructor);
-MLT_API void mlt_factory_close();
-MLT_API mlt_properties mlt_global_properties();
+MLT_EXPORT void mlt_factory_register_for_clean_up(void *ptr, mlt_destructor destructor);
+MLT_EXPORT void mlt_factory_close();
+MLT_EXPORT mlt_properties mlt_global_properties();
 
 /** The event data for all factory-related events */
 

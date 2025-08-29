@@ -38,11 +38,11 @@ typedef struct
 /* Remote parser API.
 */
 
-MLT_API mlt_tokeniser mlt_tokeniser_init();
-MLT_API int mlt_tokeniser_parse_new(mlt_tokeniser tokeniser, char *text, const char *delimiter);
-MLT_API char *mlt_tokeniser_get_input(mlt_tokeniser tokeniser);
-MLT_API int mlt_tokeniser_count(mlt_tokeniser tokeniser);
-MLT_API char *mlt_tokeniser_get_string(mlt_tokeniser tokeniser, int index);
-MLT_API void mlt_tokeniser_close(mlt_tokeniser tokeniser);
+MLT_EXPORT mlt_tokeniser mlt_tokeniser_init();
+MLT_EXPORT int mlt_tokeniser_parse_new(mlt_tokeniser tokeniser, char *text, const char *delimiter);
+MLT_EXPORT char *mlt_tokeniser_get_input(mlt_tokeniser tokeniser);
+MLT_EXPORT int mlt_tokeniser_count(mlt_tokeniser tokeniser);
+MLT_EXPORT char *mlt_tokeniser_get_string(mlt_tokeniser tokeniser, int index);
+MLT_EXPORT void mlt_tokeniser_close(mlt_tokeniser tokeniser);
 
 #endif

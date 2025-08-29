@@ -78,35 +78,35 @@ struct mlt_service_s
 
 #define MLT_SERVICE_PROPERTIES(service) (&(service)->parent)
 
-MLT_API int mlt_service_init(mlt_service self, void *child);
-MLT_API void mlt_service_lock(mlt_service self);
-MLT_API void mlt_service_unlock(mlt_service self);
-MLT_API mlt_service_type mlt_service_identify(mlt_service self);
-MLT_API int mlt_service_connect_producer(mlt_service self, mlt_service producer, int index);
-MLT_API int mlt_service_insert_producer(mlt_service self, mlt_service producer, int index);
-MLT_API int mlt_service_disconnect_producer(mlt_service self, int index);
-MLT_API int mlt_service_disconnect_all_producers(mlt_service self);
-MLT_API mlt_service mlt_service_get_producer(mlt_service self);
-MLT_API int mlt_service_get_frame(mlt_service self, mlt_frame_ptr frame, int index);
-MLT_API mlt_properties mlt_service_properties(mlt_service self);
-MLT_API void mlt_service_set_consumer(mlt_service self, mlt_service consumer);
-MLT_API mlt_service mlt_service_consumer(mlt_service self);
-MLT_API mlt_service mlt_service_producer(mlt_service self);
-MLT_API int mlt_service_attach(mlt_service self, mlt_filter filter);
-MLT_API int mlt_service_detach(mlt_service self, mlt_filter filter);
-MLT_API void mlt_service_apply_filters(mlt_service self, mlt_frame frame, int index);
-MLT_API int mlt_service_filter_count(mlt_service self);
-MLT_API int mlt_service_move_filter(mlt_service self, int from, int to);
-MLT_API mlt_filter mlt_service_filter(mlt_service self, int index);
-MLT_API mlt_profile mlt_service_profile(mlt_service self);
-MLT_API void mlt_service_set_profile(mlt_service self, mlt_profile profile);
-MLT_API void mlt_service_close(mlt_service self);
+MLT_EXPORT int mlt_service_init(mlt_service self, void *child);
+MLT_EXPORT void mlt_service_lock(mlt_service self);
+MLT_EXPORT void mlt_service_unlock(mlt_service self);
+MLT_EXPORT mlt_service_type mlt_service_identify(mlt_service self);
+MLT_EXPORT int mlt_service_connect_producer(mlt_service self, mlt_service producer, int index);
+MLT_EXPORT int mlt_service_insert_producer(mlt_service self, mlt_service producer, int index);
+MLT_EXPORT int mlt_service_disconnect_producer(mlt_service self, int index);
+MLT_EXPORT int mlt_service_disconnect_all_producers(mlt_service self);
+MLT_EXPORT mlt_service mlt_service_get_producer(mlt_service self);
+MLT_EXPORT int mlt_service_get_frame(mlt_service self, mlt_frame_ptr frame, int index);
+MLT_EXPORT mlt_properties mlt_service_properties(mlt_service self);
+MLT_EXPORT void mlt_service_set_consumer(mlt_service self, mlt_service consumer);
+MLT_EXPORT mlt_service mlt_service_consumer(mlt_service self);
+MLT_EXPORT mlt_service mlt_service_producer(mlt_service self);
+MLT_EXPORT int mlt_service_attach(mlt_service self, mlt_filter filter);
+MLT_EXPORT int mlt_service_detach(mlt_service self, mlt_filter filter);
+MLT_EXPORT void mlt_service_apply_filters(mlt_service self, mlt_frame frame, int index);
+MLT_EXPORT int mlt_service_filter_count(mlt_service self);
+MLT_EXPORT int mlt_service_move_filter(mlt_service self, int from, int to);
+MLT_EXPORT mlt_filter mlt_service_filter(mlt_service self, int index);
+MLT_EXPORT mlt_profile mlt_service_profile(mlt_service self);
+MLT_EXPORT void mlt_service_set_profile(mlt_service self, mlt_profile profile);
+MLT_EXPORT void mlt_service_close(mlt_service self);
 
-MLT_API void mlt_service_cache_put(
+MLT_EXPORT void mlt_service_cache_put(
     mlt_service self, const char *name, void *data, int size, mlt_destructor destructor);
-MLT_API mlt_cache_item mlt_service_cache_get(mlt_service self, const char *name);
-MLT_API void mlt_service_cache_set_size(mlt_service self, const char *name, int size);
-MLT_API int mlt_service_cache_get_size(mlt_service self, const char *name);
-MLT_API void mlt_service_cache_purge(mlt_service self);
+MLT_EXPORT mlt_cache_item mlt_service_cache_get(mlt_service self, const char *name);
+MLT_EXPORT void mlt_service_cache_set_size(mlt_service self, const char *name, int size);
+MLT_EXPORT int mlt_service_cache_get_size(mlt_service self, const char *name);
+MLT_EXPORT void mlt_service_cache_purge(mlt_service self);
 
 #endif

@@ -99,7 +99,7 @@ static const u_char *find_string(const u_char *, int *, const char * const *,
 	const char * const *, int);
 
 
-MLT_API char *
+MLT_EXPORT char *
 strptime(const char *buf, const char *fmt, struct tm *tm)
 {
 	unsigned char c;

@@ -15,9 +15,10 @@ file(GLOB YML "*.yml")
 add_custom_target(Other_plsugpl_Files SOURCES
   ${YML}
 )
-
+include(GenerateExportHeader)
+generate_export_header(mltplusgpl)
 target_compile_options(mltplusgpl PRIVATE ${MLT_COMPILE_OPTIONS})
-
+target_include_directories(mltplusgpl PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(mltplusgpl PRIVATE mlt mlt++ Threads::Threads)
 if(MSVC)
   target_link_libraries(mltplusgpl PRIVATE msvccompat PThreads4W::PThreads4W)

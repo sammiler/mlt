@@ -293,19 +293,19 @@ typedef void *(*mlt_thread_function_t)(void *);      /**< generic thread functio
 #include <pthread.h>
 /* Win32 compatibility function declarations */
 #if !defined(__MINGW32__)
-MLT_API int usleep(unsigned int useconds);
+MLT_EXPORT int usleep(unsigned int useconds);
 #endif
 #ifndef WIN_PTHREADS_TIME_H
-MLT_API int nanosleep(const struct timespec *rqtp, struct timespec *rmtp);
+MLT_EXPORT int nanosleep(const struct timespec *rqtp, struct timespec *rmtp);
 #endif
-MLT_API int setenv(const char *name, const char *value, int overwrite);
-MLT_API char *getlocale();
-MLT_API FILE *win32_fopen(const char *filename_utf8, const char *mode_utf8);
+MLT_EXPORT int setenv(const char *name, const char *value, int overwrite);
+MLT_EXPORT char *getlocale();
+MLT_EXPORT FILE *win32_fopen(const char *filename_utf8, const char *mode_utf8);
 #include <sys/stat.h>
 #include <sys/types.h>
-MLT_API int win32_stat(const char *filename_utf8, struct stat *buffer);
+MLT_EXPORT int win32_stat(const char *filename_utf8, struct stat *buffer);
 #include <time.h>
-MLT_API char *strptime(const char *buf, const char *fmt, struct tm *tm);
+MLT_EXPORT char *strptime(const char *buf, const char *fmt, struct tm *tm);
 #define mlt_fopen win32_fopen
 #define mlt_stat win32_stat
 #define MLT_DIRLIST_DELIMITER ";"
@@ -315,8 +315,8 @@ MLT_API char *strptime(const char *buf, const char *fmt, struct tm *tm);
 #define MLT_DIRLIST_DELIMITER ":"
 #endif /* ifdef _WIN32 */
 
-MLT_API const char *mlt_deinterlacer_name(mlt_deinterlacer method);
-MLT_API mlt_deinterlacer mlt_deinterlacer_id(const char *name);
+MLT_EXPORT const char *mlt_deinterlacer_name(mlt_deinterlacer method);
+MLT_EXPORT mlt_deinterlacer mlt_deinterlacer_id(const char *name);
 
 #ifdef __cplusplus
 }

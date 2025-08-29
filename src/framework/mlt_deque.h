@@ -35,31 +35,31 @@
 */
 typedef int (*mlt_deque_compare)(void *a, void *b);
 
-MLT_API mlt_deque mlt_deque_init();
-MLT_API int mlt_deque_count(mlt_deque self);
-MLT_API int mlt_deque_push_back(mlt_deque self, void *item);
-MLT_API void *mlt_deque_pop_back(mlt_deque self);
-MLT_API int mlt_deque_push_front(mlt_deque self, void *item);
-MLT_API void *mlt_deque_pop_front(mlt_deque self);
-MLT_API void *mlt_deque_peek_back(mlt_deque self);
-MLT_API void *mlt_deque_peek_front(mlt_deque self);
-MLT_API void *mlt_deque_peek(mlt_deque self, int index);
-MLT_API int mlt_deque_insert(mlt_deque self, void *item, mlt_deque_compare);
+MLT_EXPORT mlt_deque mlt_deque_init();
+MLT_EXPORT int mlt_deque_count(mlt_deque self);
+MLT_EXPORT int mlt_deque_push_back(mlt_deque self, void *item);
+MLT_EXPORT void *mlt_deque_pop_back(mlt_deque self);
+MLT_EXPORT int mlt_deque_push_front(mlt_deque self, void *item);
+MLT_EXPORT void *mlt_deque_pop_front(mlt_deque self);
+MLT_EXPORT void *mlt_deque_peek_back(mlt_deque self);
+MLT_EXPORT void *mlt_deque_peek_front(mlt_deque self);
+MLT_EXPORT void *mlt_deque_peek(mlt_deque self, int index);
+MLT_EXPORT int mlt_deque_insert(mlt_deque self, void *item, mlt_deque_compare);
 
-MLT_API int mlt_deque_push_back_int(mlt_deque self, int item);
-MLT_API int mlt_deque_pop_back_int(mlt_deque self);
-MLT_API int mlt_deque_push_front_int(mlt_deque self, int item);
-MLT_API int mlt_deque_pop_front_int(mlt_deque self);
-MLT_API int mlt_deque_peek_back_int(mlt_deque self);
-MLT_API int mlt_deque_peek_front_int(mlt_deque self);
+MLT_EXPORT int mlt_deque_push_back_int(mlt_deque self, int item);
+MLT_EXPORT int mlt_deque_pop_back_int(mlt_deque self);
+MLT_EXPORT int mlt_deque_push_front_int(mlt_deque self, int item);
+MLT_EXPORT int mlt_deque_pop_front_int(mlt_deque self);
+MLT_EXPORT int mlt_deque_peek_back_int(mlt_deque self);
+MLT_EXPORT int mlt_deque_peek_front_int(mlt_deque self);
 
-MLT_API int mlt_deque_push_back_double(mlt_deque self, double item);
-MLT_API double mlt_deque_pop_back_double(mlt_deque self);
-MLT_API int mlt_deque_push_front_double(mlt_deque self, double item);
-MLT_API double mlt_deque_pop_front_double(mlt_deque self);
-MLT_API double mlt_deque_peek_back_double(mlt_deque self);
-MLT_API double mlt_deque_peek_front_double(mlt_deque self);
+MLT_EXPORT int mlt_deque_push_back_double(mlt_deque self, double item);
+MLT_EXPORT double mlt_deque_pop_back_double(mlt_deque self);
+MLT_EXPORT int mlt_deque_push_front_double(mlt_deque self, double item);
+MLT_EXPORT double mlt_deque_pop_front_double(mlt_deque self);
+MLT_EXPORT double mlt_deque_peek_back_double(mlt_deque self);
+MLT_EXPORT double mlt_deque_peek_front_double(mlt_deque self);
 
-MLT_API void mlt_deque_close(mlt_deque self);
+MLT_EXPORT void mlt_deque_close(mlt_deque self);
 
 #endif

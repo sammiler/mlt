@@ -24,7 +24,6 @@
 #define MLT_EVENTS_H
 
 #include "mlt_types.h"
-#include "mlt_export.h"
 
 /** A container for data that may be supplied with an event */
 typedef struct
@@ -51,34 +50,34 @@ typedef struct
  */
 typedef void (*mlt_listener)(mlt_properties, void *, mlt_event_data);
 
-MLT_API void mlt_events_init(mlt_properties self);
-MLT_API int mlt_events_register(mlt_properties self, const char *id);
-MLT_API int mlt_events_fire(mlt_properties self, const char *id, mlt_event_data);
-MLT_API mlt_event mlt_events_listen(mlt_properties self,
+MLT_EXPORT void mlt_events_init(mlt_properties self);
+MLT_EXPORT int mlt_events_register(mlt_properties self, const char *id);
+MLT_EXPORT int mlt_events_fire(mlt_properties self, const char *id, mlt_event_data);
+MLT_EXPORT mlt_event mlt_events_listen(mlt_properties self,
                                    void *listener_data,
                                    const char *id,
                                    mlt_listener listener);
-MLT_API void mlt_events_block(mlt_properties self, void *listener_data);
-MLT_API void mlt_events_unblock(mlt_properties self, void *listener_data);
-MLT_API void mlt_events_disconnect(mlt_properties self, void *listener_data);
+MLT_EXPORT void mlt_events_block(mlt_properties self, void *listener_data);
+MLT_EXPORT void mlt_events_unblock(mlt_properties self, void *listener_data);
+MLT_EXPORT void mlt_events_disconnect(mlt_properties self, void *listener_data);
 
-MLT_API mlt_event mlt_events_setup_wait_for(mlt_properties self, const char *id);
-MLT_API void mlt_events_wait_for(mlt_properties self, mlt_event event);
-MLT_API void mlt_events_close_wait_for(mlt_properties self, mlt_event event);
+MLT_EXPORT mlt_event mlt_events_setup_wait_for(mlt_properties self, const char *id);
+MLT_EXPORT void mlt_events_wait_for(mlt_properties self, mlt_event event);
+MLT_EXPORT void mlt_events_close_wait_for(mlt_properties self, mlt_event event);
 
-MLT_API void mlt_event_inc_ref(mlt_event self);
-MLT_API void mlt_event_block(mlt_event self);
-MLT_API void mlt_event_unblock(mlt_event self);
-MLT_API void mlt_event_close(mlt_event self);
+MLT_EXPORT void mlt_event_inc_ref(mlt_event self);
+MLT_EXPORT void mlt_event_block(mlt_event self);
+MLT_EXPORT void mlt_event_unblock(mlt_event self);
+MLT_EXPORT void mlt_event_close(mlt_event self);
 
-MLT_API mlt_event_data mlt_event_data_none();
-MLT_API mlt_event_data mlt_event_data_from_int(int value);
-MLT_API int mlt_event_data_to_int(mlt_event_data);
-MLT_API mlt_event_data mlt_event_data_from_string(const char *value);
-MLT_API const char *mlt_event_data_to_string(mlt_event_data);
-MLT_API mlt_event_data mlt_event_data_from_frame(mlt_frame);
-MLT_API mlt_frame mlt_event_data_to_frame(mlt_event_data);
-MLT_API mlt_event_data mlt_event_data_from_object(void *);
-MLT_API void *mlt_event_data_to_object(mlt_event_data);
+MLT_EXPORT mlt_event_data mlt_event_data_none();
+MLT_EXPORT mlt_event_data mlt_event_data_from_int(int value);
+MLT_EXPORT int mlt_event_data_to_int(mlt_event_data);
+MLT_EXPORT mlt_event_data mlt_event_data_from_string(const char *value);
+MLT_EXPORT const char *mlt_event_data_to_string(mlt_event_data);
+MLT_EXPORT mlt_event_data mlt_event_data_from_frame(mlt_frame);
+MLT_EXPORT mlt_frame mlt_event_data_to_frame(mlt_event_data);
+MLT_EXPORT mlt_event_data mlt_event_data_from_object(void *);
+MLT_EXPORT void *mlt_event_data_to_object(mlt_event_data);
 
 #endif

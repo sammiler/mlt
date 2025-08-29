@@ -26,20 +26,20 @@
 #include "mlt_types.h"
 #include "mlt_export.h"
 
-MLT_API void *mlt_cache_item_data(mlt_cache_item item, int *size);
-MLT_API void mlt_cache_item_close(mlt_cache_item item);
+MLT_EXPORT void *mlt_cache_item_data(mlt_cache_item item, int *size);
+MLT_EXPORT void mlt_cache_item_close(mlt_cache_item item);
 
-MLT_API mlt_cache mlt_cache_init();
-MLT_API void mlt_cache_set_size(mlt_cache cache, int size);
-MLT_API int mlt_cache_get_size(mlt_cache cache);
-MLT_API void mlt_cache_close(mlt_cache cache);
-MLT_API void mlt_cache_purge(mlt_cache cache, void *object);
-MLT_API void mlt_cache_put(
+MLT_EXPORT mlt_cache mlt_cache_init();
+MLT_EXPORT void mlt_cache_set_size(mlt_cache cache, int size);
+MLT_EXPORT int mlt_cache_get_size(mlt_cache cache);
+MLT_EXPORT void mlt_cache_close(mlt_cache cache);
+MLT_EXPORT void mlt_cache_purge(mlt_cache cache, void *object);
+MLT_EXPORT void mlt_cache_put(
     mlt_cache cache, void *object, void *data, int size, mlt_destructor destructor);
-MLT_API mlt_cache_item mlt_cache_get(mlt_cache cache, void *object);
-MLT_API void mlt_cache_put_frame(mlt_cache cache, mlt_frame frame);
-MLT_API void mlt_cache_put_frame_audio(mlt_cache cache, mlt_frame frame);
-MLT_API void mlt_cache_put_frame_image(mlt_cache cache, mlt_frame frame);
-MLT_API mlt_frame mlt_cache_get_frame(mlt_cache cache, mlt_position position);
+MLT_EXPORT mlt_cache_item mlt_cache_get(mlt_cache cache, void *object);
+MLT_EXPORT void mlt_cache_put_frame(mlt_cache cache, mlt_frame frame);
+MLT_EXPORT void mlt_cache_put_frame_audio(mlt_cache cache, mlt_frame frame);
+MLT_EXPORT void mlt_cache_put_frame_image(mlt_cache cache, mlt_frame frame);
+MLT_EXPORT mlt_frame mlt_cache_get_frame(mlt_cache cache, mlt_position position);
 
 #endif

@@ -11,12 +11,10 @@ file(GLOB YML "*.yml")
 add_custom_target(Other_xine_Files SOURCES
   ${YML}
 )
-
+include(GenerateExportHeader)
+generate_export_header(mltxine)
 target_compile_options(mltxine PRIVATE ${MLT_COMPILE_OPTIONS})
-if(MSVC)
-  target_compile_definitions(mltxine PRIVATE mlt_EXPORTS)
-endif()
-
+target_include_directories(mltxine PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 target_link_libraries(mltxine PRIVATE mlt ${CMAKE_DL_LIBS})
 
 set_target_properties(mltxine PROPERTIES POSITION_INDEPENDENT_CODE ON)
