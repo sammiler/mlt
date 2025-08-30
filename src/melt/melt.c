@@ -28,7 +28,7 @@
 #include <stdlib.h>
 #include <string.h>
 #ifdef _MSC_VER
-#include <msvc/msvc_posix_compat.h>
+#include <msvc_posix_compat.h>
 #else
 #include <unistd.h>
 #endif

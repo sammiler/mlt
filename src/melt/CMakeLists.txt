@@ -5,7 +5,6 @@ target_compile_options(melt PRIVATE ${MLT_COMPILE_OPTIONS})
 target_link_libraries(melt PRIVATE mlt Threads::Threads)
 
 target_compile_definitions(melt PRIVATE VERSION="${MLT_VERSION}")
-target_include_directories(melt PRIVATE ${CMAKE_SOURCE_DIR}/src)
 if(SDL2_FOUND AND NOT ANDROID)
     target_link_libraries(melt PRIVATE SDL2::SDL2)
     target_compile_definitions(melt PRIVATE HAVE_SDL2)

@@ -15,12 +15,14 @@ include(GenerateExportHeader)
 generate_export_header(mltxine)
 target_compile_options(mltxine PRIVATE ${MLT_COMPILE_OPTIONS})
 target_include_directories(mltxine PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
-target_include_directories(mltxine PRIVATE ${CMAKE_SOURCE_DIR}/src)
 target_link_libraries(mltxine PRIVATE mlt ${CMAKE_DL_LIBS})
 
 set_target_properties(mltxine PROPERTIES POSITION_INDEPENDENT_CODE ON)
 
 target_compile_definitions(mltxine PRIVATE PIC)
+if(MSVC)
+  target_link_libraries(mltxine PRIVATE msvccompat)
+endif()
 
 if(CPU_MMX)
   target_compile_definitions(mltxine PRIVATE USE_MMX)
