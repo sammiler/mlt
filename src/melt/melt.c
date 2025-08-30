@@ -27,14 +27,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#ifndef _MSC_VER
+#ifdef _MSC_VER
+#include <msvc/msvc_posix_compat.h>
+#else
 #include <unistd.h>
 #endif
-#ifdef _MSC_VER
-#include <framework/msvc_posix_compat.h>
-#endif
-#include <framework/mlt.h>
-
 #if (defined(__APPLE__) || defined(_WIN32) || defined(HAVE_SDL2)) && !defined(MELT_NOSDL)
 #define SDL_MAIN_HANDLED
 #include <SDL.h>

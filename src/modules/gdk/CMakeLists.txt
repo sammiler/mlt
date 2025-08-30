@@ -14,7 +14,7 @@ include(GenerateExportHeader)
 generate_export_header(mltgdk)
 target_compile_options(mltgdk PRIVATE ${MLT_COMPILE_OPTIONS})
 target_include_directories(mltgdk PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
-
+target_include_directories(mltgdk PRIVATE ${CMAKE_SOURCE_DIR}/src)
 target_link_libraries(mltgdk PRIVATE mlt Threads::Threads PkgConfig::GdkPixbuf)
 if(NOT MSVC)
   target_link_libraries(mltgdk PRIVATE m)
